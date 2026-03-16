@@ -50,4 +50,7 @@ app.UseHttpsRedirection();
 
 app.MapControllers(); // IMPORTANT
 
+// ADD THIS LINE
+app.MapGet("/", () => "TinyUrl API is running successfully");
+
 app.Run();
