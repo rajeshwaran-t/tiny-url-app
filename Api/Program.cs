@@ -45,7 +45,6 @@ var app = builder.Build();
 app.UseCors("ReactPolicy");
 
 // Swagger
-
 app.UseSwagger();
 app.UseSwaggerUI();
 
