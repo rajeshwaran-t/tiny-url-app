@@ -22,10 +22,10 @@ jobs:
       run: dotnet restore ./Api/TinyUrl.csproj
 
     - name: Build project
-      run: dotnet build ./backend --configuration Release
+      run: dotnet build ./Api/TinyUrl.csproj --configuration Release --no-restore
 
     - name: Publish project
-      run: dotnet publish ./backend -c Release -o publish
+      run: dotnet publish ./Api/TinyUrl.csproj -c Release -o publish
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
