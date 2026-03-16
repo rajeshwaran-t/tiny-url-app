@@ -24,19 +24,24 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IUrlRepository, UrlRepository>();
 builder.Services.AddScoped<IUrlService, UrlService>();
 
+// CORS configuration
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactPolicy",
         policy =>
         {
-            policy.WithOrigins("http://localhost:3000")
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
+            policy.WithOrigins(
+                "http://localhost:3000",
+                "https://calm-smoke-09290d00f.4.azurestaticapps.net"
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod();
         });
 });
 
 var app = builder.Build();
 
+// Enable CORS
 app.UseCors("ReactPolicy");
 
 // Swagger
