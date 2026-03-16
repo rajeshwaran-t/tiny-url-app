@@ -41,7 +41,7 @@ function UrlList({ refresh, showMessage }) {
 
   const copyUrl = async (code) => {
 
-    const shortUrl = `https://localhost:7176/r/${code}`;
+    const shortUrl = `const API_URL = "https://tinyurl-api-new-csfkcgdfdhakh5ab.centralindia-01.azurewebsites.net/api/r/${code}`;
 
     await navigator.clipboard.writeText(shortUrl);
 
@@ -54,7 +54,7 @@ function UrlList({ refresh, showMessage }) {
 
   const openShortUrl = (code) => {
 
-    window.open(`https://localhost:7176/r/${code}`, "_blank");
+    window.open(`https://tinyurl-api-new-csfkcgdfdhakh5ab.centralindia-01.azurewebsites.net/r/${code}`, "_blank");
 
     setTimeout(() => {
       loadUrls();
@@ -89,7 +89,7 @@ function UrlList({ refresh, showMessage }) {
                   openShortUrl(url.shortCode);
                 }}
               >
-                https://localhost:7176/{url.shortCode}
+                https://tinyurl-api-new-csfkcgdfdhakh5ab.centralindia-01.azurewebsites.net/{url.shortCode}
               </a>
 
               {/* <button
