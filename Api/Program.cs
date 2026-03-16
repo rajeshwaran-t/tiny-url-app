@@ -32,7 +32,7 @@ builder.Services.AddCors(options =>
         {
             policy.WithOrigins(
                 "http://localhost:3000",
-                "https://calm-smoke-09290d00f.4.azurestaticapps.net"
+                "https://gray-ocean-022d1410f.2.azurestaticapps.net/"
             )
             .AllowAnyHeader()
             .AllowAnyMethod();
