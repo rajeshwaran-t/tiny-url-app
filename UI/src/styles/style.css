@@ -4,9 +4,12 @@ body {
 }
 
 .container {
-  width: 700px;
+  max-width: 700px;
+  /* instead of fixed width */
+  width: 95%;
   margin: auto;
   text-align: center;
+  padding: 10px;
 }
 
 h1 {
@@ -28,6 +31,8 @@ h1 {
   gap: 15px;
   width: 100%;
   margin-bottom: 15px;
+  flex-wrap: wrap;
+  /* 👈 allows stacking */
 }
 
 .url-input {
@@ -78,31 +83,72 @@ background: linear-gradient(90deg,#218838,#17a589);
   margin-top: 20px;
 }
 
-.search {
+/* .search {
   width: 60%;
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
+} */
+
+.search {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  /* 👈 prevents overflow */
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin: 10px 0;
+  /* 👈 spacing like cards */
+}
+
+.search-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .url-card {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  /* 👈 important */
   background: white;
   padding: 15px;
   border-radius: 10px;
   margin-top: 15px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .url-left {
   text-align: left;
+  flex: 1;
+  min-width: 250px;
+  word-break: break-word;
+  /* prevent overflow */
 }
 
-.url-actions {
+/* ✅ Desktop layout */
+.url-bottom {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
+}
+
+/* Copy stays in middle */
+.url-middle {
+  display: flex;
+  justify-content: center;
+}
+
+/* Actions on right */
+.url-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
 }
 
 .primary-btn {
@@ -195,6 +241,8 @@ background: linear-gradient(90deg,#218838,#17a589);
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
+  /* 👈 wrap on small screens */
 }
 
 .icon-copy {
@@ -213,4 +261,30 @@ background: linear-gradient(90deg,#218838,#17a589);
 .icon-copy:hover svg {
   transform: scale(1.15);
   fill: #28a745;
+}
+
+@media (max-width: 600px) {
+
+  .url-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* ✅ Row: Copy left, Actions right */
+  .url-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .url-middle {
+    justify-content: flex-start;
+  }
+
+  .url-actions {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
 }

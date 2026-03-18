@@ -41,7 +41,7 @@ function UrlList({ refresh, showMessage }) {
 
   const copyUrl = async (code) => {
 
-    const shortUrl = `const API_URL = "https://tinyurl-api-new-csfkcgdfdhakh5ab.centralindia-01.azurewebsites.net/api/r/${code}`;
+    const shortUrl = `https://tinyurl-api-new-csfkcgdfdhakh5ab.centralindia-01.azurewebsites.net/r/${code}`;
 
     await navigator.clipboard.writeText(shortUrl);
 
@@ -68,71 +68,57 @@ function UrlList({ refresh, showMessage }) {
 
       <h2>Public URLs</h2>
 
-      <input
-        className="search"
-        placeholder="Search URLs..."
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <div className="search-wrapper">
+        <input
+          className="search"
+          placeholder="Search URLs..."
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
 
       {filtered.map(url => (
 
         <div className="url-card" key={url.id}>
 
           <div className="url-left">
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                openShortUrl(url.shortCode);
+              }}
+            >
+              https://tinyurl-api-new-csfkcgdfdhakh5ab.centralindia-01.azurewebsites.net/{url.shortCode}
+            </a>
 
-            <div className="url-row">
+            <p>{url.originalUrl}</p>
+          </div>
 
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  openShortUrl(url.shortCode);
-                }}
-              >
-                https://tinyurl-api-new-csfkcgdfdhakh5ab.centralindia-01.azurewebsites.net/{url.shortCode}
-              </a>
+          {/* ✅ NEW WRAPPER */}
+          <div className="url-bottom">
 
-              {/* <button
-                className="icon-copy"
-                onClick={() => copyUrl(url.shortCode)}
-                title="Copy URL"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="black"
-                >
-                  <path d="M19 21H9a2 2 0 0 1-2-2V7h2v12h10v2zm3-4H13a2 2 0 0 1-2-2V3a2 2 0 0 1 
-        2-2h9a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2zm0-14h-9v12h9V3z"/>
-                </svg>
-              </button> */}
-
+            <div className="url-middle">
               <button
                 className="primary-btn"
                 onClick={() => copyUrl(url.shortCode)}
               >
                 Copy
               </button>
-
             </div>
 
-            <p>{url.originalUrl}</p>
+            <div className="url-actions">
+              <div className="click-count">
+                {url.clickCount} clicks
+              </div>
 
-          </div>
-
-          <div className="url-actions">
-
-            <span>{url.clickCount} clicks</span>
-
-            <button
-              className="delete-btn"
-              onClick={() => deleteUrl(url.id)}
-              disabled={deleteLoadingId === url.id}
-            >
-              {deleteLoadingId === url.id ? "Deleting..." : "Delete"}
-            </button>
+              <button
+                className="delete-btn"
+                onClick={() => deleteUrl(url.id)}
+                disabled={deleteLoadingId === url.id}
+              >
+                {deleteLoadingId === url.id ? "Deleting..." : "Delete"}
+              </button>
+            </div>
 
           </div>
 
